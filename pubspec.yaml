@@ -1,10 +1,10 @@
 name: flutter_canvas_code_editor
-description: A new Flutter project.
+description: An editor for Dart code, built with the Flutter canvas.
 publish_to: 'none'
-version: 0.1.0
+version: 0.0.0-a1
 
 environment:
-  sdk: '>=3.1.0-262.1.beta <4.0.0'
+  sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
   flutter:
@@ -13,7 +13,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  enspyr_lints:
+    git: https://github.com/enspyrco/enspyr_lints
 
 flutter:
   uses-material-design: true
