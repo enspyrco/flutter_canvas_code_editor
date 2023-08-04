@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-final codeValeNotifier = ValueNotifier<String>('');
+import 'code_change_notifier.dart';
+
+final codeChangeNotifier = CodeChangeNotifier();
 
 const textStyle = TextStyle(
   color: Colors.black,
@@ -9,14 +11,15 @@ const textStyle = TextStyle(
 );
 
 bool keyEventHandler(KeyEvent event) {
-  // switch case
-  print(event.character);
   if (event.character != null) {
-    codeValeNotifier.value += event.character!;
+    if (event.logicalKey.keyLabel == 'Backspace') {
+      codeChangeNotifier.remove();
+    } else {
+      codeChangeNotifier.add(event.character!);
+    }
   }
 
   // indicates whether Flutter "handles" the event
-  // TODO: we should return false for (eg.) Cmd-Q
   return true;
 }
 
@@ -67,11 +70,11 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class MyPainter extends CustomPainter {
-  MyPainter() : super(repaint: codeValeNotifier);
+  MyPainter() : super(repaint: codeChangeNotifier);
   @override
   void paint(Canvas canvas, Size size) {
     final textSpan = TextSpan(
-      text: codeValeNotifier.value,
+      children: codeChangeNotifier.tokens,
       style: textStyle,
     );
 
@@ -84,9 +87,11 @@ class MyPainter extends CustomPainter {
       minWidth: 0,
       maxWidth: size.width,
     );
+
     final xCenter = (size.width - textPainter.width) / 2;
     final yCenter = (size.height - textPainter.height) / 2;
     final offset = Offset(xCenter, yCenter);
+
     textPainter.paint(canvas, offset);
   }
 
