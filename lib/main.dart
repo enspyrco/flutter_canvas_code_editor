@@ -1,9 +1,13 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'code_change_notifier.dart';
 
 final codeChangeNotifier = CodeChangeNotifier();
+double height = 0;
 
 const textStyle = TextStyle(
   color: Colors.black,
@@ -60,10 +64,33 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: CustomPaint(
-        size: const Size(300, 300),
-        painter: MyPainter(),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.grey,
+        title: const Text('VS Code (really)'),
+        actions: [
+          TextButton(
+            onPressed: () async {
+              FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+              if (result != null) {
+                File file = File(result.files.single.path ?? '');
+                codeChangeNotifier.add(file.readAsStringSync());
+              } else {
+                // User canceled the picker
+              }
+            },
+            child: const Text('Open File'),
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: LayoutBuilder(builder: (context, constraints) {
+          return CustomPaint(
+            size: Size(constraints.maxWidth, height),
+            painter: MyPainter(),
+          );
+        }),
       ),
     );
   }
@@ -87,6 +114,8 @@ class MyPainter extends CustomPainter {
       minWidth: 0,
       maxWidth: size.width,
     );
+
+    height = textPainter.height;
 
     final xCenter = (size.width - textPainter.width) / 2;
     final yCenter = (size.height - textPainter.height) / 2;
