@@ -2,12 +2,13 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 
 import 'code_change_notifier.dart';
 
 final codeChangeNotifier = CodeChangeNotifier();
-double height = 0;
+final ValueNotifier<double> heightNotifier = ValueNotifier<double>(0);
 
 const textStyle = TextStyle(
   color: Colors.black,
@@ -85,12 +86,16 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: SingleChildScrollView(
-        child: LayoutBuilder(builder: (context, constraints) {
-          return CustomPaint(
-            size: Size(constraints.maxWidth, height),
-            painter: MyPainter(),
-          );
-        }),
+        child: ValueListenableBuilder<double>(
+            valueListenable: heightNotifier,
+            builder: (context, value, child) {
+              return LayoutBuilder(builder: (context, constraints) {
+                return CustomPaint(
+                  size: Size(constraints.maxWidth, heightNotifier.value),
+                  painter: MyPainter(),
+                );
+              });
+            }),
       ),
     );
   }
@@ -115,7 +120,9 @@ class MyPainter extends CustomPainter {
       maxWidth: size.width,
     );
 
-    height = textPainter.height;
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      heightNotifier.value = textPainter.height;
+    });
 
     final xCenter = (size.width - textPainter.width) / 2;
     final yCenter = (size.height - textPainter.height) / 2;
