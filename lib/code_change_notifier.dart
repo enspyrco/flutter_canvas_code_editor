@@ -13,6 +13,11 @@ class CodeChangeNotifier extends ChangeNotifier {
 
   TextSpan _currentToken;
 
+  void clear() {
+    tokens.clear();
+    _currentToken = const TextSpan(text: '');
+  }
+
   void add(String character) {
     if (character == ' ') {
       tokens.add(const TextSpan(text: ' '));

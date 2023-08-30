@@ -1,9 +1,37 @@
 {
   "configurations": [
     {
-      "name": "Run",
+      "name": "vanilla",
       "request": "launch",
-      "type": "dart"
-    }
+      "type": "dart",
+      "program": "${workspaceFolder:flutter_canvas_code_editor}/lib/main.dart"
+    },
+    {
+      "name": "in-app-inspector",
+      "request": "launch",
+      "type": "dart",
+      "program": "${workspaceFolder:flutter_canvas_code_editor}/lib/main.dart",
+      "toolArgs": [
+        "--dart-define",
+        "IN-APP-ASTRO-INSPECTOR=true"
+      ]
+    },
+    {
+      "name": "devtools-inspector",
+      "request": "launch",
+      "type": "dart",
+      "program": "${workspaceFolder:flutter_canvas_code_editor}/lib/main.dart",
+      "toolArgs": [
+        "--dart-define",
+        "DEVTOOLS-ASTRO-INSPECTOR=true"
+      ]
+    },
+    {
+      "name": "web",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "chrome",
+      "args": ["--web-hostname", "localhost", "--web-port", "5000"]
+    },
   ]
 }
