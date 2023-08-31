@@ -16,4 +16,8 @@ class FileSystemService {
 
     return entities;
   }
+
+  String getFileContents(String filePath) {
+    return fs.file(filePath).readAsStringSync();
+  }
 }

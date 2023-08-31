@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:percepts/percepts.dart';
 
-import 'beliefs/i_d_e_beliefs.dart';
-import '../../build_context_extensions.dart';
-import '../../code_painter.dart';
-import '../workspace/models/directory_model.dart';
-import '../workspace/cognition/considerations/prompting_for_directory.dart';
-import '../../state.dart';
+import '../beliefs/i_d_e_beliefs.dart';
+import '../../../build_context_extensions.dart';
+import '../../../code_painter.dart';
+import '../../workspace/models/directory_model.dart';
+import '../../workspace/cognition/considerations/prompting_for_directory.dart';
+import '../../../state.dart';
 
 bool keyEventHandler(KeyEvent event) {
   if (event.character != null) {
