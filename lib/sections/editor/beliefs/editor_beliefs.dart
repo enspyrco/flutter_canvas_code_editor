@@ -5,30 +5,30 @@ import '../../workspace/beliefs/file_system_entity_name.dart';
 class EditorBeliefs implements CoreBeliefs {
   EditorBeliefs({
     required this.currentFileName,
-    required this.currentFileContents,
+    required this.characterMap,
   });
 
   final FileSystemEntityName? currentFileName;
-  final String? currentFileContents;
+  final Map<String, String>? characterMap;
 
   static EditorBeliefs get initial => EditorBeliefs(
         currentFileName: null,
-        currentFileContents: null,
+        characterMap: null,
       );
 
   @override
   EditorBeliefs copyWith({
     FileSystemEntityName? currentFileName,
-    String? currentFileContents,
+    Map<String, String>? characterMap,
   }) =>
       EditorBeliefs(
         currentFileName: currentFileName ?? this.currentFileName,
-        currentFileContents: currentFileContents ?? this.currentFileContents,
+        characterMap: characterMap ?? this.characterMap,
       );
 
   @override
   toJson() => {
         'currentFileName': currentFileName,
-        'currentFileContents': currentFileContents,
+        'characterMap': characterMap,
       };
 }

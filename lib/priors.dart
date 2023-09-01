@@ -12,17 +12,21 @@ import 'sections/i_d_e/beliefs/i_d_e_beliefs.dart';
 import 'sections/i_d_e/beliefs/i_d_e_layer.dart';
 import 'services/file_picker_service.dart';
 import 'services/file_system_service.dart';
+import 'services/identity_service.dart';
 
 Future<void> setupPriors({required Widget initialScreen}) async {
-  /// Setup Locator so plugins can add SystemChecks & Routes, configure the AppState, etc.
+  // Setup Locator so plugins can add SystemChecks & Routes, configure the AppState, etc.
   Locator.add<Habits>(DefaultHabits());
   Locator.add<PageGenerator>(DefaultPageGenerator());
   Locator.add<IDEBeliefs>(IDEBeliefs.initial
       .copyWith(framing: const DefaultFramingBeliefs(layers: [IDELayer()])));
+
+  // Add services
   Locator.add<FilePickerService>(const FilePickerService());
   Locator.add<FileSystemService>(const FileSystemService());
+  Locator.add<IdentityService>(const IdentityService());
 
-  /// Perform individual package initialization.
+  // Perform individual package initialization.
   initializeErrorHandling<IDEBeliefs>();
   initializeIntrospection<IDEBeliefs>();
   initializeFraming<IDEBeliefs>(
@@ -53,7 +57,7 @@ class OriginOfPerception extends StatelessWidget {
           Expanded(
             flex: 1,
             child: Material(
-              child: AstroInspectorScreen(locate<IntrospectionHabit>().stream),
+              child: IntrospectionScreen(locate<IntrospectionHabit>().stream),
             ),
           ),
         const Expanded(

@@ -1,19 +1,33 @@
+import 'package:abstractions/beliefs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:locator_for_perception/locator_for_perception.dart';
 
-import 'state.dart';
+import '../../../state.dart';
+import '../../i_d_e/beliefs/i_d_e_beliefs.dart';
 
 const textStyle = TextStyle(
   color: Colors.black,
   fontSize: 30,
 );
 
-class CodePainter extends CustomPainter {
-  CodePainter() : super(repaint: codeChangeNotifier);
+class EditorPainter extends CustomPainter {
+  EditorPainter() : super(repaint: codeUpdateNotifier);
+
   @override
   void paint(Canvas canvas, Size size) {
+    // final textSpan = TextSpan(
+    //   children: codeChangeNotifier.tokens,
+    //   style: textStyle,
+    // );
+
     final textSpan = TextSpan(
-      children: codeChangeNotifier.tokens,
+      text: locate<BeliefSystem<IDEBeliefs>>()
+          .beliefs
+          .editor
+          .characterMap
+          ?.values
+          .join(),
       style: textStyle,
     );
 

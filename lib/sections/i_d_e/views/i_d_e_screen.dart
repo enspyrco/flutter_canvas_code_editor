@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:percepts/percepts.dart';
 
+import '../../editor/views/editor_view.dart';
+import '../../workspace/views/workspace_view.dart';
 import '../beliefs/i_d_e_beliefs.dart';
 import '../../../build_context_extensions.dart';
-import '../../../code_painter.dart';
 import '../../workspace/models/directory_model.dart';
 import '../../workspace/cognition/considerations/prompting_for_directory.dart';
 import '../../../state.dart';
@@ -59,48 +60,10 @@ class _IDEScreenState extends State<IDEScreen> {
           ),
         ],
       ),
-      body: Row(
+      body: const Row(
         children: [
-          SizedBox(
-              width: 200,
-              child: StreamOfConsciousness<IDEBeliefs, DirectoryModel>(
-                infer: (beliefs) =>
-                    DirectoryModel(beliefs.workspace.entityNames),
-                builder: (context, model) {
-                  return ListView(children: [
-                    ...model.fileSystemEntityNames.map<Widget>(
-                      (element) => ListTile(
-                        leading: const Icon(
-                          Icons.file_copy,
-                          size: 20,
-                        ),
-                        title: Text(element.basename),
-                        onTap: () async {
-                          // context.consider(element.dirname)
-                          codeChangeNotifier.remove();
-                          File file =
-                              File('${element.dirname}/${element.basename}');
-                          codeChangeNotifier.add(file.readAsStringSync());
-                        },
-                      ),
-                    )
-                  ]);
-                },
-              )),
-          Expanded(
-            child: SingleChildScrollView(
-              child: ValueListenableBuilder<double>(
-                  valueListenable: heightNotifier,
-                  builder: (context, value, child) {
-                    return LayoutBuilder(builder: (context, constraints) {
-                      return CustomPaint(
-                        size: Size(constraints.maxWidth, heightNotifier.value),
-                        painter: CodePainter(),
-                      );
-                    });
-                  }),
-            ),
-          ),
+          WorkspaceView(),
+          EditorView(),
         ],
       ),
     );
