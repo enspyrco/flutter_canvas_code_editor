@@ -14,14 +14,27 @@ class EditorView extends StatelessWidget {
             valueListenable: heightNotifier,
             builder: (context, value, child) {
               return LayoutBuilder(builder: (context, constraints) {
-                return CustomPaint(
-                  size: Size(constraints.maxWidth, heightNotifier.value),
-                  painter: EditorPainter(),
+                return GestureDetector(
+                  child: CustomPaint(
+                    size: Size(constraints.maxWidth, heightNotifier.value),
+                    painter: EditorPainter(),
+                  ),
+                  onTapUp: (details) {
+                    TextPosition position =
+                        getPositionForOffset(details.localPosition);
+                    selection = TextSelection(
+                      baseOffset: position.offset,
+                      extentOffset: (position.affinity == TextAffinity.upstream)
+                          ? position.offset - 1
+                          : position.offset + 1,
+                      affinity: position.affinity,
+                    );
+                    codeUpdateNotifier.update();
+                  },
                 );
               });
             }),
       ),
     );
-    ;
   }
 }

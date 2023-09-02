@@ -38,9 +38,9 @@ Future<void> setupPriors({required Widget initialScreen}) async {
 
   /// Finally, create our BeliefSystem and add to the Locator.
   final beliefSystem = DefaultBeliefSystem<IDEBeliefs>(
-      state: locate<IDEBeliefs>(),
+      beliefs: locate<IDEBeliefs>(),
       errorHandlers: DefaultErrorHandlers<IDEBeliefs>(),
-      systemChecks: locate<Habits>(),
+      habits: locate<Habits>(),
       beliefSystemFactory: ParentingBeliefSystem.new);
 
   Locator.add<BeliefSystem<IDEBeliefs>>(beliefSystem);

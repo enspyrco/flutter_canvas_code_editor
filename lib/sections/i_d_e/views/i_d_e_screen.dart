@@ -1,14 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:percepts/percepts.dart';
 
 import '../../editor/views/editor_view.dart';
 import '../../workspace/views/workspace_view.dart';
-import '../beliefs/i_d_e_beliefs.dart';
 import '../../../build_context_extensions.dart';
-import '../../workspace/models/directory_model.dart';
 import '../../workspace/cognition/considerations/prompting_for_directory.dart';
 import '../../../state.dart';
 

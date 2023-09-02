@@ -11,6 +11,12 @@ const textStyle = TextStyle(
   fontSize: 30,
 );
 
+late TextPosition Function(Offset) getPositionForOffset;
+TextSelection? selection;
+var paint1 = Paint()
+  ..color = const Color(0xff995588)
+  ..style = PaintingStyle.fill;
+
 class EditorPainter extends CustomPainter {
   EditorPainter() : super(repaint: codeUpdateNotifier);
 
@@ -36,10 +42,20 @@ class EditorPainter extends CustomPainter {
       textDirection: TextDirection.ltr,
     );
 
+    textPainter.preferredLineHeight;
+
     textPainter.layout(
       minWidth: 0,
       maxWidth: size.width,
     );
+
+    if (selection != null) {
+      final textboxes = textPainter.getBoxesForSelection(selection!);
+      TextBox textBox = textboxes.first;
+      canvas.drawRect(textBox.toRect(), paint1);
+    }
+
+    getPositionForOffset = textPainter.getPositionForOffset;
 
     SchedulerBinding.instance.addPostFrameCallback((_) {
       heightNotifier.value = textPainter.height;
