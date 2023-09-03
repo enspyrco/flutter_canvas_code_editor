@@ -42,17 +42,27 @@ class EditorPainter extends CustomPainter {
       textDirection: TextDirection.ltr,
     );
 
-    textPainter.preferredLineHeight;
-
     textPainter.layout(
-      minWidth: 0,
+      minWidth: size.width,
       maxWidth: size.width,
     );
 
     if (selection != null) {
       final textboxes = textPainter.getBoxesForSelection(selection!);
       TextBox textBox = textboxes.first;
-      canvas.drawRect(textBox.toRect(), paint1);
+      if (selection!.affinity == TextAffinity.upstream) {
+        canvas.drawLine(
+          Offset(textBox.right, textBox.top),
+          Offset(textBox.right, textBox.bottom),
+          paint1,
+        );
+      } else {
+        canvas.drawLine(
+          Offset(textBox.left, textBox.top),
+          Offset(textBox.left, textBox.bottom),
+          paint1,
+        );
+      }
     }
 
     getPositionForOffset = textPainter.getPositionForOffset;
