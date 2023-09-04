@@ -7,7 +7,7 @@ import 'package:abstractions/beliefs.dart';
 import 'package:flutter/widgets.dart';
 import 'package:locator_for_perception/locator_for_perception.dart';
 
-import 'sections/i_d_e/beliefs/i_d_e_beliefs.dart';
+import '../sections/i_d_e/beliefs/i_d_e_beliefs.dart';
 
 extension BuildContextExtensions on BuildContext {
   void conclude(Conclusion<IDEBeliefs> conclusion) {

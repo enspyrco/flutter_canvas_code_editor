@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:percepts/percepts.dart';
 
-import '../../../build_context_extensions.dart';
+import '../../../utils/build_context_extensions.dart';
 import '../../editor/cognition/considerations/opening_file.dart';
 import '../../i_d_e/beliefs/i_d_e_beliefs.dart';
 import '../models/directory_model.dart';

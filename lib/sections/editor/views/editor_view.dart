@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../global_state.dart';
+import '../../../utils/global_state.dart';
 import 'editor_painter.dart';
 
 class EditorView extends StatelessWidget {
