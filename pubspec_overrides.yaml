@@ -14,6 +14,8 @@ dependency_overrides:
     path: ../../utils/perception/percepts
   test_utils_for_perception:
     path: ../../utils/perception/test_utils_for_perception
+  analysis_server_utils:
+    path: ../../../dart/utils/analysis_server_utils
 
   # enspyr_lints:
   #   path: 

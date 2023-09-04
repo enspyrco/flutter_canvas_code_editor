@@ -8,6 +8,13 @@ packages:
       relative: true
     source: path
     version: "0.0.0-a1"
+  analysis_server_utils:
+    dependency: "direct main"
+    description:
+      path: "../../../dart/utils/analysis_server_utils"
+      relative: true
+    source: path
+    version: "0.0.0-a1"
   async:
     dependency: transitive
     description:
@@ -92,10 +99,10 @@ packages:
     dependency: "direct main"
     description:
       name: file_picker
-      sha256: bdfa035a974a0c080576c4c8ed01cdf9d1b406a04c7daa05443ef0383a97bedc
+      sha256: be325344c1f3070354a1d84a231a1ba75ea85d413774ec4bdf444c023342e030
       url: "https://pub.dev"
     source: hosted
-    version: "5.3.4"
+    version: "5.5.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -105,18 +112,18 @@ packages:
     dependency: transitive
     description:
       name: flutter_lints
-      sha256: "2118df84ef0c3ca93f96123a616ae8540879991b8b57af2f81b76a7ada49b2a4"
+      sha256: a25a15ebbdfc33ab1cd26c63a6ee519df92338a9c10f122adda92938253bef04
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.2"
+    version: "2.0.3"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
       name: flutter_plugin_android_lifecycle
-      sha256: "950e77c2bbe1692bc0874fc7fb491b96a4dc340457f4ea1641443d0a6c1ea360"
+      sha256: f185ac890306b5779ecbd611f52502d8d4d63d27703ef73161ca0407e815f02c
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.15"
+    version: "2.0.16"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -134,6 +141,14 @@ packages:
       relative: true
     source: path
     version: "0.0.0-a1"
+  intl:
+    dependency: "direct main"
+    description:
+      name: intl
+      sha256: "3bc132a9dbce73a7e4a21a17d06e1878839ffbf975568bc875c60537824b0c4d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.18.1"
   introspection:
     dependency: "direct main"
     description:
@@ -164,6 +179,23 @@ packages:
       path: "../../utils/perception/locator_for_perception"
       relative: true
     source: path
+    version: "0.0.0-a1"
+  logging:
+    dependency: transitive
+    description:
+      name: logging
+      sha256: "623a88c9594aa774443aa3eb2d41807a48486b5613e67599fb4c41c0ad47c340"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.0"
+  lsp_models:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "3e22cad80cc08e7180186adf7c2067c605c4dc75"
+      url: "https://github.com/enspyrco/lsp_models.git"
+    source: git
     version: "0.0.0-a1"
   matcher:
     dependency: transitive
@@ -208,10 +240,10 @@ packages:
     dependency: transitive
     description:
       name: plugin_platform_interface
-      sha256: "43798d895c929056255600343db8f049921cbec94d31ec87f1dc5c16c01935dd"
+      sha256: da3fdfeccc4d4ff2da8f8c556704c08f912542c5fb3cf2233ed75372384a034d
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.5"
+    version: "2.1.6"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -307,4 +339,4 @@ packages:
     version: "5.0.7"
 sdks:
   dart: ">=3.1.0-185.0.dev <4.0.0"
-  flutter: ">=3.3.0"
+  flutter: ">=3.7.0"
