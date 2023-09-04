@@ -4,7 +4,7 @@ import 'package:locator_for_perception/locator_for_perception.dart';
 
 import '../../../../services/file_system_service.dart';
 import '../../../../services/identity_service.dart';
-import '../../../../state.dart';
+import '../../../../global_state.dart';
 import '../../../i_d_e/beliefs/i_d_e_beliefs.dart';
 import '../../../workspace/beliefs/file_system_entity_name.dart';
 import '../conclusions/editor_update.dart';

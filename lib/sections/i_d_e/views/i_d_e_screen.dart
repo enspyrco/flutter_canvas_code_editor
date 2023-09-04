@@ -5,14 +5,13 @@ import '../../editor/views/editor_view.dart';
 import '../../workspace/views/workspace_view.dart';
 import '../../../build_context_extensions.dart';
 import '../../workspace/cognition/considerations/prompting_for_directory.dart';
-import '../../../state.dart';
 
 bool keyEventHandler(KeyEvent event) {
   if (event.character != null) {
     if (event.logicalKey.keyLabel == 'Backspace') {
-      codeChangeNotifier.remove();
+      // codeChangeNotifier.remove();
     } else {
-      codeChangeNotifier.add(event.character!);
+      // codeChangeNotifier.add(event.character!);
     }
   }
 
