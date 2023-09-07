@@ -12,7 +12,7 @@ import 'sections/analysis/cognition/considerations/listening_to_analysis_server.
 import 'sections/analysis/cognition/considerations/starting_analysis_server.dart';
 import 'sections/i_d_e/beliefs/i_d_e_beliefs.dart';
 import 'sections/i_d_e/beliefs/i_d_e_layer.dart';
-import 'services/analysis_server_service.dart';
+import 'services/analysis_service.dart';
 import 'services/file_picker_service.dart';
 import 'services/file_system_service.dart';
 import 'services/identity_service.dart';
@@ -28,7 +28,7 @@ Future<void> setupPriors({required Widget initialScreen}) async {
   Locator.add<FilePickerService>(const FilePickerService());
   Locator.add<FileSystemService>(const FileSystemService());
   Locator.add<IdentityService>(const IdentityService());
-  Locator.add<AnalysisServerService>(AnalysisServerService());
+  Locator.add<AnalysisService>(AnalysisService());
 
   // Perform individual package initialization.
   initializeErrorHandling<IDEBeliefs>();
