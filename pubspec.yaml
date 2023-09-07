@@ -31,8 +31,8 @@ dependencies:
     git: https://github.com/enspyrco/test_utils_for_perception
   analysis_server_utils:
     git: https://github.com/enspyrco/analysis_server_utils
-  lsp_models:
-    git: https://github.com/enspyrco/lsp_models.git
+  lsp_client:
+    git: https://github.com/enspyrco/lsp_client
 
 dev_dependencies:
   flutter_test:

@@ -4,18 +4,18 @@ import '../../../i_d_e/beliefs/i_d_e_beliefs.dart';
 
 class AnalysisUpdate extends Conclusion<IDEBeliefs> {
   const AnalysisUpdate({
-    String? newReceivedMessage,
+    Map<String, Object?>? newReceivedMessage,
   }) : _newReceiveMessage = newReceivedMessage;
 
-  final String? _newReceiveMessage;
+  final Map<String, Object?>? _newReceiveMessage;
 
   @override
   IDEBeliefs conclude(IDEBeliefs beliefs) {
     return (_newReceiveMessage != null)
         ? beliefs.copyWith(
             analysis: beliefs.analysis.copyWith(
-              receivedStrings: [
-                ...beliefs.analysis.receivedStrings,
+              receivedMessages: [
+                ...beliefs.analysis.receivedMessages,
                 _newReceiveMessage!
               ],
             ),

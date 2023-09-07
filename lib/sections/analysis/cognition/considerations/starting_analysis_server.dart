@@ -11,9 +11,7 @@ class StartingAnalysisServer extends Consideration<IDEBeliefs> {
   Future<void> consider(BeliefSystem<IDEBeliefs> beliefSystem) async {
     final service = locate<AnalysisServerService>();
 
-    await service.start();
-
-    service.initialize();
+    await service.startServer();
 
     // beliefSystem.conclude();
   }

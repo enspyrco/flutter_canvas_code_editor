@@ -12,7 +12,7 @@ class ListeningToAnalysisServer extends Consideration<IDEBeliefs> {
   Future<void> consider(BeliefSystem<IDEBeliefs> beliefSystem) async {
     final service = locate<AnalysisServerService>();
 
-    await for (String message in service.getReceiveStream()) {
+    await for (Map<String, Object?> message in service.getReceiveStream()) {
       beliefSystem.conclude(
         AnalysisUpdate(newReceivedMessage: message),
       );

@@ -2,25 +2,25 @@ import 'package:abstractions/beliefs.dart';
 
 class AnalysisBeliefs implements CoreBeliefs {
   AnalysisBeliefs({
-    required this.receivedStrings,
+    required this.receivedMessages,
   });
 
-  final List<String> receivedStrings;
+  final List<Map<String, Object?>> receivedMessages;
 
   static AnalysisBeliefs get initial => AnalysisBeliefs(
-        receivedStrings: [],
+        receivedMessages: [],
       );
 
   @override
   AnalysisBeliefs copyWith({
-    List<String>? receivedStrings,
+    List<Map<String, Object?>>? receivedMessages,
   }) =>
       AnalysisBeliefs(
-        receivedStrings: receivedStrings ?? this.receivedStrings,
+        receivedMessages: receivedMessages ?? this.receivedMessages,
       );
 
   @override
   toJson() => {
-        'receivedStrings': receivedStrings,
+        'receivedMessages': receivedMessages,
       };
 }

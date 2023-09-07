@@ -188,8 +188,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
-  lsp_models:
+  lsp_client:
     dependency: "direct main"
+    description:
+      path: "../../../dart/api-clients/lsp_client"
+      relative: true
+    source: path
+    version: "0.0.0-a1"
+  lsp_models:
+    dependency: transitive
     description:
       path: "."
       ref: HEAD

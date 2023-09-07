@@ -1,9 +1,5 @@
-import 'dart:io';
-
 import 'package:analysis_server_utils/analysis_server_utils.dart';
-import 'package:intl/intl.dart';
-import 'package:lsp_models/lsp_models.dart';
-import 'package:path/path.dart';
+import 'package:lsp_client/lsp_client.dart';
 
 class AnalysisServerService {
   AnalysisServerService({AnalysisServer? server})
@@ -18,31 +14,16 @@ class AnalysisServerService {
             );
 
   final AnalysisServer _server;
+  late final AnalysisServerClient _client =
+      AnalysisServerClient(_server.streamChannel);
 
-  Future<void> start() => _server.start();
-
-  void initialize() {
-    final params = InitializeParams(
-      processId: pid,
-      rootUri: Directory.current.uri,
-      capabilities: ClientCapabilities(),
-      initializationOptions: {},
-      trace: const TraceValues.fromJson('verbose'),
-      workspaceFolders: [
-        WorkspaceFolder(
-          name: basename(Directory.current.path),
-          uri: Directory.current.uri,
-        )
-      ],
-      clientInfo:
-          InitializeParamsClientInfo(name: 'enspyr.co', version: '0.0.1'),
-      locale: Intl.getCurrentLocale(),
-    );
-
-    _server.call(method: 'initialize', params: params.toJson());
+  Future<void> startServer() async {
+    await _server.start();
+    _server.initialize();
   }
 
-  Stream<String> getReceiveStream() => _server.onReceive;
+  Stream<Map<String, Object?>> getReceiveStream() =>
+      _client.transformedServerOutput();
 
   Future<void> dispose() => _server.dispose();
 }
