@@ -18,7 +18,7 @@ class StartingAnalysisServer extends Consideration<IDEBeliefs> {
 
   @override
   toJson() => {
-        'name_': 'StartAnalysisServer',
+        'name_': 'StartingAnalysisServer',
         'state_': <String, Object?>{},
       };
 }

@@ -14,16 +14,21 @@ class AnalysisService {
             );
 
   final AnalysisServer _server;
-  late final AnalysisServerClient _client =
-      AnalysisServerClient(_server.streamChannel);
+  late final AnalysisClient _client = AnalysisClient(_server.streamChannel);
 
   Future<void> startServer() async {
     await _server.start();
     _server.initialize();
   }
 
-  Stream<Map<String, Object?>> getReceiveStream() =>
-      _client.transformedServerOutput();
+  // LSP spec requires an 'initialized' notification be sent to the server
+  // "after the client received the result of the initialize request but before
+  // the client is sending any other request or notification to the server".
+  // See: https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#initialized
+  void declareServerInitialized() =>
+      _client.call(method: 'initialized', params: {});
+
+  Stream<Map<String, Object?>> get onJsonFromServer => _client.onJsonFromServer;
 
   Future<void> dispose() => _server.dispose();
 }
