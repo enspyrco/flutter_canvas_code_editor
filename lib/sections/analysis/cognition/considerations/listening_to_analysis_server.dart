@@ -4,7 +4,7 @@ import 'package:lsp_client/lsp_client.dart';
 
 import '../../../../systems/analysis_system.dart';
 import '../../../i_d_e/beliefs/i_d_e_beliefs.dart';
-import '../conclusions/analysis_update.dart';
+import '../conclusions/analysis_updated.dart';
 
 class ListeningToAnalysisServer extends Consideration<IDEBeliefs> {
   const ListeningToAnalysisServer();
@@ -19,11 +19,11 @@ class ListeningToAnalysisServer extends Consideration<IDEBeliefs> {
       // using it.
       if (message['id'] == AnalysisProcess.initialize.index) {
         service.declareServerInitialized();
-        beliefSystem.conclude(const AnalysisUpdate(initialized: true));
+        beliefSystem.conclude(const AnalysisUpdated(initialized: true));
       }
 
       beliefSystem.conclude(
-        AnalysisUpdate(newReceivedMessage: message),
+        AnalysisUpdated(newReceivedMessage: message),
       );
     }
   }

@@ -2,8 +2,8 @@ import 'package:abstractions/beliefs.dart';
 
 import '../../../i_d_e/beliefs/i_d_e_beliefs.dart';
 
-class AnalysisUpdate extends Conclusion<IDEBeliefs> {
-  const AnalysisUpdate({
+class AnalysisUpdated extends Conclusion<IDEBeliefs> {
+  const AnalysisUpdated({
     Map<String, Object?>? newReceivedMessage,
     bool? initialized,
   })  : _newReceiveMessage = newReceivedMessage,
@@ -14,14 +14,13 @@ class AnalysisUpdate extends Conclusion<IDEBeliefs> {
 
   @override
   IDEBeliefs conclude(IDEBeliefs beliefs) {
-    return (_newReceiveMessage != null)
+    return (_newReceiveMessage != null || _initialized != null)
         ? beliefs.copyWith(
             analysis: beliefs.analysis.copyWith(
               initialized: _initialized,
-              receivedMessages: [
-                ...beliefs.analysis.receivedMessages,
-                _newReceiveMessage!
-              ],
+              receivedMessages: _newReceiveMessage == null
+                  ? beliefs.analysis.receivedMessages
+                  : [...beliefs.analysis.receivedMessages, _newReceiveMessage!],
             ),
           )
         : beliefs;
@@ -29,8 +28,9 @@ class AnalysisUpdate extends Conclusion<IDEBeliefs> {
 
   @override
   toJson() => {
-        'name_': 'AnalysisUpdate',
+        'name_': 'AnalysisUpdated',
         'state_': {
+          'initialized': _initialized,
           'newReceiveMessage': _newReceiveMessage,
         },
       };
