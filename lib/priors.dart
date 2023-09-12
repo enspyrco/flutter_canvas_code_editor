@@ -57,7 +57,7 @@ class OriginOfPerception extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        if (const bool.fromEnvironment('IN-APP-ASTRO-INSPECTOR'))
+        if (const bool.fromEnvironment('IN-APP-INTROSPECTION'))
           Expanded(
             flex: 1,
             child: Material(
