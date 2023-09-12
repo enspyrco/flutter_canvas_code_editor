@@ -1,8 +1,8 @@
 import 'package:analysis_server_utils/analysis_server_utils.dart';
 import 'package:lsp_client/lsp_client.dart';
 
-class AnalysisService {
-  AnalysisService({AnalysisServer? server})
+class AnalysisSystem {
+  AnalysisSystem({AnalysisServer? server})
       : _server = server ??
             AnalysisServer(
               config: AnalysisServerConfig(

@@ -5,7 +5,7 @@ import 'package:locator_for_perception/locator_for_perception.dart';
 import 'package:path/path.dart';
 
 import '../../../i_d_e/beliefs/i_d_e_beliefs.dart';
-import '../../../../services/file_system_service.dart';
+import '../../../../systems/file_system_system.dart';
 import '../../beliefs/file_system_entity_name.dart';
 import '../../beliefs/opening_directory_state.dart';
 import '../conclusions/workspace_updates.dart';
@@ -20,7 +20,7 @@ class OpeningDirectory extends Consideration<IDEBeliefs> {
     beliefSystem.conclude(
         WorkspaceUpdates(openingDirectoryState: OpeningDirectoryState.opening));
 
-    var service = locate<FileSystemService>();
+    var service = locate<FileSystemSystem>();
 
     List<FileSystemEntity> entities = await service.openDirectory(_path);
 

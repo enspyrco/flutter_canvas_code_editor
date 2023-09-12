@@ -2,8 +2,8 @@ import 'package:abstractions/beliefs.dart';
 import 'package:flutter/material.dart';
 import 'package:locator_for_perception/locator_for_perception.dart';
 
-import '../../../../services/file_system_service.dart';
-import '../../../../services/identity_service.dart';
+import '../../../../systems/file_system_system.dart';
+import '../../../../systems/identity_system.dart';
 import '../../../../utils/global_state.dart';
 import '../../../i_d_e/beliefs/i_d_e_beliefs.dart';
 import '../../../workspace/beliefs/file_system_entity_name.dart';
@@ -17,8 +17,8 @@ class OpeningFile extends Consideration<IDEBeliefs> {
 
   @override
   Future<void> consider(BeliefSystem<IDEBeliefs> beliefSystem) async {
-    final fileSystemService = locate<FileSystemService>();
-    final identityService = locate<IdentityService>();
+    final fileSystemService = locate<FileSystemSystem>();
+    final identityService = locate<IdentitySystem>();
     final String currentUserId = identityService.getCurrentUserId();
     // TODO: ensure no @ symbols in currentUserId (as we use it to separate count and id)
 

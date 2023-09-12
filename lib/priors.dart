@@ -12,10 +12,10 @@ import 'sections/analysis/cognition/considerations/listening_to_analysis_server.
 import 'sections/analysis/cognition/considerations/starting_analysis_server.dart';
 import 'sections/i_d_e/beliefs/i_d_e_beliefs.dart';
 import 'sections/i_d_e/beliefs/i_d_e_layer.dart';
-import 'services/analysis_service.dart';
-import 'services/file_picker_service.dart';
-import 'services/file_system_service.dart';
-import 'services/identity_service.dart';
+import 'systems/analysis_system.dart';
+import 'systems/file_picker_system.dart';
+import 'systems/file_system_system.dart';
+import 'systems/identity_system.dart';
 
 Future<void> setupPriors({required Widget initialScreen}) async {
   // Setup Locator so plugins can add SystemChecks & Routes, configure the AppState, etc.
@@ -25,10 +25,10 @@ Future<void> setupPriors({required Widget initialScreen}) async {
       .copyWith(framing: const DefaultFramingBeliefs(layers: [IDELayer()])));
 
   // Add services
-  Locator.add<FilePickerService>(const FilePickerService());
-  Locator.add<FileSystemService>(const FileSystemService());
-  Locator.add<IdentityService>(const IdentityService());
-  Locator.add<AnalysisService>(AnalysisService());
+  Locator.add<FilePickerSystem>(const FilePickerSystem());
+  Locator.add<FileSystemSystem>(const FileSystemSystem());
+  Locator.add<IdentitySystem>(const IdentitySystem());
+  Locator.add<AnalysisSystem>(AnalysisSystem());
 
   // Perform individual package initialization.
   initializeErrorHandling<IDEBeliefs>();

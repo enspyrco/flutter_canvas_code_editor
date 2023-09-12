@@ -1,8 +1,8 @@
 import 'package:file/file.dart';
 import 'package:file/local.dart';
 
-class FileSystemService {
-  const FileSystemService({FileSystem? fileSystem})
+class FileSystemSystem {
+  const FileSystemSystem({FileSystem? fileSystem})
       : fs = fileSystem ?? const LocalFileSystem();
 
   final FileSystem fs;
