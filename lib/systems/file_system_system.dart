@@ -17,6 +17,8 @@ class FileSystemSystem {
     return entities;
   }
 
+  Directory directoryFromPath(String path) => fs.directory(path);
+
   String getFileContents(String filePath) {
     return fs.file(filePath).readAsStringSync();
   }

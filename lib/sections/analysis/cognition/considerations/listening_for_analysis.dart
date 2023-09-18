@@ -6,19 +6,20 @@ import '../../../../systems/analysis_system.dart';
 import '../../../i_d_e/beliefs/i_d_e_beliefs.dart';
 import '../conclusions/analysis_updated.dart';
 
-class ListeningToAnalysisServer extends Consideration<IDEBeliefs> {
-  const ListeningToAnalysisServer();
+class ListeningForAnalysis extends Consideration<IDEBeliefs> {
+  const ListeningForAnalysis();
 
   @override
   Future<void> consider(BeliefSystem<IDEBeliefs> beliefSystem) async {
-    final service = locate<AnalysisSystem>();
+    final analysisSystem = locate<AnalysisSystem>();
 
-    await for (Map<String, Object?> message in service.onJsonFromServer) {
+    await for (Map<String, Object?> message
+        in analysisSystem.onJsonFromServer) {
       // when the analysis server sends a response to the 'initialize' request,
       // we need to send it an 'initialized' notification before we start
       // using it.
       if (message['id'] == AnalysisProcess.initialize.index) {
-        service.declareServerInitialized();
+        analysisSystem.declareServerInitialized();
         beliefSystem.conclude(
           const AnalysisUpdated(
             initialized: true,
@@ -39,7 +40,7 @@ class ListeningToAnalysisServer extends Consideration<IDEBeliefs> {
 
   @override
   toJson() => {
-        'name_': 'ListeningToAnalysisServer',
+        'name_': 'ListeningForAnalysis',
         'state_': <String, Object?>{},
       };
 }

@@ -1,9 +1,9 @@
-import 'dart:io';
-
 import 'package:abstractions/beliefs.dart';
+import 'package:file/file.dart';
 import 'package:locator_for_perception/locator_for_perception.dart';
 import 'package:path/path.dart';
 
+import '../../../analysis/cognition/considerations/starting_analysis_server.dart';
 import '../../../i_d_e/beliefs/i_d_e_beliefs.dart';
 import '../../../../systems/file_system_system.dart';
 import '../../beliefs/file_system_entity_name.dart';
@@ -20,9 +20,13 @@ class OpeningDirectory extends Consideration<IDEBeliefs> {
     beliefSystem.conclude(
         WorkspaceUpdates(openingDirectoryState: OpeningDirectoryState.opening));
 
-    var service = locate<FileSystemSystem>();
+    var fileSystemSystem = locate<FileSystemSystem>();
 
-    List<FileSystemEntity> entities = await service.openDirectory(_path);
+    List<FileSystemEntity> entities =
+        await fileSystemSystem.openDirectory(_path);
+
+    beliefSystem.consider(StartingAnalysisServer(
+        directory: fileSystemSystem.directoryFromPath(_path)));
 
     beliefSystem.conclude(
       WorkspaceUpdates(

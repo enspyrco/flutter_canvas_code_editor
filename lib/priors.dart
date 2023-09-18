@@ -8,8 +8,7 @@ import 'package:framing_in_perception/framing_in_perception.dart';
 import 'package:flutter/material.dart';
 import 'package:abstractions/beliefs.dart';
 
-import 'sections/analysis/cognition/considerations/listening_to_analysis_server.dart';
-import 'sections/analysis/cognition/considerations/starting_analysis_server.dart';
+import 'sections/analysis/cognition/considerations/listening_for_analysis.dart';
 import 'sections/i_d_e/beliefs/i_d_e_beliefs.dart';
 import 'sections/i_d_e/beliefs/i_d_e_layer.dart';
 import 'systems/analysis_system.dart';
@@ -68,8 +67,7 @@ class OriginOfPerception extends StatelessWidget {
           flex: 1,
           child: FramingBuilder<IDEBeliefs>(
             onInit: (beliefSystem) {
-              beliefSystem.consider(const StartingAnalysisServer());
-              beliefSystem.consider(const ListeningToAnalysisServer());
+              beliefSystem.consider(const ListeningForAnalysis());
             },
           ),
         ),

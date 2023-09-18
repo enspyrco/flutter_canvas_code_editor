@@ -11,21 +11,24 @@ import '../../../i_d_e/beliefs/i_d_e_beliefs.dart';
 import '../conclusions/analysis_updated.dart';
 
 class StartingAnalysisServer extends Consideration<IDEBeliefs> {
-  const StartingAnalysisServer();
+  const StartingAnalysisServer({required Directory directory})
+      : _directory = directory;
+
+  final Directory _directory;
 
   @override
   Future<void> consider(BeliefSystem<IDEBeliefs> beliefSystem) async {
-    final service = locate<AnalysisSystem>();
+    final analysisSystem = locate<AnalysisSystem>();
 
     final initializeParams = InitializeParams(
-      rootUri: Directory.current.uri,
+      rootUri: _directory.uri,
       capabilities: ClientCapabilities(),
       initializationOptions: {},
       trace: const TraceValues.fromJson('verbose'),
       workspaceFolders: [
         WorkspaceFolder(
-          name: basename(Directory.current.path),
-          uri: Directory.current.uri,
+          name: basename(_directory.path),
+          uri: _directory.uri,
         )
       ],
       clientInfo:
@@ -33,7 +36,7 @@ class StartingAnalysisServer extends Consideration<IDEBeliefs> {
       locale: Intl.getCurrentLocale(),
     );
 
-    await service.startServer(initializeParams);
+    await analysisSystem.startServer(initializeParams);
 
     beliefSystem.conclude(
       AnalysisUpdated(
