@@ -16,9 +16,9 @@ class AnalysisSystem {
   final AnalysisServer _server;
   late final AnalysisClient _client = AnalysisClient(_server.streamChannel);
 
-  Future<void> startServer() async {
+  Future<void> startServer(InitializeParams initializeParams) async {
     await _server.start();
-    _server.initialize();
+    _server.initialize(paramsJson: initializeParams.toJson());
   }
 
   // LSP spec requires an 'initialized' notification be sent to the server

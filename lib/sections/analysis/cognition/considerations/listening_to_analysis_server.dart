@@ -19,9 +19,18 @@ class ListeningToAnalysisServer extends Consideration<IDEBeliefs> {
       // using it.
       if (message['id'] == AnalysisProcess.initialize.index) {
         service.declareServerInitialized();
-        beliefSystem.conclude(const AnalysisUpdated(initialized: true));
+        beliefSystem.conclude(
+          const AnalysisUpdated(
+            initialized: true,
+            newSentMessage: {
+              'method': 'initialized',
+              'params': {},
+            },
+          ),
+        );
       }
 
+      message.remove('jsonrpc'); // this is redundant and just takes up space
       beliefSystem.conclude(
         AnalysisUpdated(newReceivedMessage: message),
       );
