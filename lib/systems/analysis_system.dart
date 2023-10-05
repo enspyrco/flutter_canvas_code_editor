@@ -28,6 +28,15 @@ class AnalysisSystem {
   void declareServerInitialized() =>
       _client.call(method: 'initialized', params: {});
 
+  void requestSemanticTokens(Uri fileUri) {
+    _client.call(
+      method: 'textDocument/semanticTokens/full',
+      params: SemanticTokensParams(
+        textDocument: TextDocumentIdentifier(uri: fileUri),
+      ).toJson(),
+    );
+  }
+
   Stream<Map<String, Object?>> get onJsonFromServer => _client.onJsonFromServer;
 
   Future<void> dispose() => _server.dispose();
