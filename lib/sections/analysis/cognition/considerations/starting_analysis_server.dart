@@ -6,7 +6,7 @@ import 'package:locator_for_perception/locator_for_perception.dart';
 import 'package:lsp_client/lsp_client.dart';
 import 'package:path/path.dart';
 
-import '../../../../systems/analysis_system.dart';
+import '../../../../subsystems/analysis_subystem.dart';
 import '../../../i_d_e/beliefs/i_d_e_beliefs.dart';
 import '../conclusions/analysis_updated.dart';
 
@@ -18,7 +18,7 @@ class StartingAnalysisServer extends Consideration<IDEBeliefs> {
 
   @override
   Future<void> consider(BeliefSystem<IDEBeliefs> beliefSystem) async {
-    final analysisSystem = locate<AnalysisSystem>();
+    final analysisSystem = locate<AnalysisSubystem>();
 
     final initializeParams = InitializeParams(
       rootUri: _directory.uri,

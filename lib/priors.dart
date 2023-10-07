@@ -11,10 +11,10 @@ import 'package:abstractions/beliefs.dart';
 import 'sections/analysis/cognition/considerations/listening_for_analysis.dart';
 import 'sections/i_d_e/beliefs/i_d_e_beliefs.dart';
 import 'sections/i_d_e/beliefs/i_d_e_layer.dart';
-import 'systems/analysis_system.dart';
-import 'systems/file_picker_system.dart';
-import 'systems/file_system_subsystem.dart';
-import 'systems/identity_system.dart';
+import 'subsystems/analysis_subystem.dart';
+import 'subsystems/file_picker_subsystem.dart';
+import 'subsystems/file_system_subsystem.dart';
+import 'subsystems/identity_subystem.dart';
 
 Future<void> setupPriors({required Widget initialScreen}) async {
   // Setup Locator so plugins can add SystemChecks & Routes, configure the AppState, etc.
@@ -24,10 +24,10 @@ Future<void> setupPriors({required Widget initialScreen}) async {
       .copyWith(framing: const DefaultFramingBeliefs(layers: [IDELayer()])));
 
   // Add services
-  Locator.add<FilePickerSystem>(const FilePickerSystem());
+  Locator.add<FilePickerSubsystem>(const FilePickerSubsystem());
   Locator.add<FileSystemSubsystem>(const FileSystemSubsystem());
-  Locator.add<IdentitySystem>(const IdentitySystem());
-  Locator.add<AnalysisSystem>(AnalysisSystem());
+  Locator.add<IdentitySubystem>(const IdentitySubystem());
+  Locator.add<AnalysisSubystem>(AnalysisSubystem());
 
   // Perform individual package initialization.
   initializeErrorHandling<IDEBeliefs>();

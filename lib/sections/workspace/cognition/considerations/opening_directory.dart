@@ -1,7 +1,7 @@
 import 'package:abstractions/beliefs.dart';
 import 'package:locator_for_perception/locator_for_perception.dart';
 
-import '../../../../systems/file_system_subsystem.dart';
+import '../../../../subsystems/file_system_subsystem.dart';
 import '../../../analysis/cognition/considerations/starting_analysis_server.dart';
 import '../../../i_d_e/beliefs/i_d_e_beliefs.dart';
 import '../../beliefs/file_system_entity_beliefs.dart';

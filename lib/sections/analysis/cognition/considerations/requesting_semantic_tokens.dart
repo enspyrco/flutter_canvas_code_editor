@@ -1,7 +1,7 @@
 import 'package:abstractions/beliefs.dart';
 import 'package:locator_for_perception/locator_for_perception.dart';
 
-import '../../../../systems/analysis_system.dart';
+import '../../../../subsystems/analysis_subystem.dart';
 import '../../../i_d_e/beliefs/i_d_e_beliefs.dart';
 import '../conclusions/analysis_updated.dart';
 
@@ -12,7 +12,7 @@ class RequestingSemanticTokens extends Consideration<IDEBeliefs> {
 
   @override
   Future<void> consider(BeliefSystem<IDEBeliefs> beliefSystem) async {
-    final analysisSystem = locate<AnalysisSystem>();
+    final analysisSystem = locate<AnalysisSubystem>();
 
     analysisSystem.requestSemanticTokens(_fileUri);
 
