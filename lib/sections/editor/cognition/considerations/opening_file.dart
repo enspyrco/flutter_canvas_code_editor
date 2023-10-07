@@ -2,38 +2,39 @@ import 'package:abstractions/beliefs.dart';
 import 'package:flutter/material.dart';
 import 'package:locator_for_perception/locator_for_perception.dart';
 
-import '../../../../systems/file_system_system.dart';
+import '../../../../systems/file_system_subsystem.dart';
 import '../../../../systems/identity_system.dart';
 import '../../../../utils/global_state.dart';
 import '../../../analysis/cognition/considerations/requesting_semantic_tokens.dart';
 import '../../../i_d_e/beliefs/i_d_e_beliefs.dart';
-import '../../../workspace/beliefs/file_system_entity_name.dart';
+import '../../../workspace/beliefs/file_system_entity_beliefs.dart';
 import '../conclusions/editor_update.dart';
 
 class OpeningFile extends Consideration<IDEBeliefs> {
-  const OpeningFile({required FileSystemEntityName fileName})
-      : _fileName = fileName;
+  const OpeningFile({required FileSystemEntityBeliefs beliefs})
+      : _beliefs = beliefs;
 
-  final FileSystemEntityName _fileName;
+  final FileSystemEntityBeliefs _beliefs;
 
   @override
   Future<void> consider(BeliefSystem<IDEBeliefs> beliefSystem) async {
-    final fileSystemService = locate<FileSystemSystem>();
+    final fileSystemSubsystem = locate<FileSystemSubsystem>();
     final identityService = locate<IdentitySystem>();
     final String currentUserId = identityService.getCurrentUserId();
     // TODO: ensure no @ symbols in currentUserId (as we use it to separate count and id)
 
-    if (_fileName.basename.split('.').last == 'dart') {
+    if (_beliefs.basename.split('.').last == 'dart') {
       beliefSystem.consider(
-          RequestingSemanticTokens(fileUri: Uri(path: _fileName.fullName)));
+          RequestingSemanticTokens(fileUri: Uri(path: _beliefs.fullName)));
     }
 
-    String fileContents = fileSystemService.getFileContents(_fileName.fullName);
+    String fileContents =
+        fileSystemSubsystem.getFileContents(_beliefs.fullName);
     int i = 0;
 
     beliefSystem.conclude(
       EditorUpdate(
-        currentFileName: _fileName,
+        currentFileName: _beliefs,
         characterMap: {
           for (var character in fileContents.characters)
             '${i++}@$currentUserId': character
@@ -52,7 +53,7 @@ class OpeningFile extends Consideration<IDEBeliefs> {
   toJson() => {
         'name_': 'OpeningFile',
         'state_': {
-          'fileName': _fileName.toJson(),
+          'fileName': _beliefs.toJson(),
         },
       };
 }

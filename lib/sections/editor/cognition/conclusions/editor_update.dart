@@ -1,16 +1,16 @@
 import 'package:abstractions/beliefs.dart';
 
 import '../../../i_d_e/beliefs/i_d_e_beliefs.dart';
-import '../../../workspace/beliefs/file_system_entity_name.dart';
+import '../../../workspace/beliefs/file_system_entity_beliefs.dart';
 
 class EditorUpdate extends Conclusion<IDEBeliefs> {
   const EditorUpdate(
-      {FileSystemEntityName? currentFileName,
+      {FileSystemEntityBeliefs? currentFileName,
       Map<String, String>? characterMap})
       : _currentFileName = currentFileName,
         _characterMap = characterMap;
 
-  final FileSystemEntityName? _currentFileName;
+  final FileSystemEntityBeliefs? _currentFileName;
   final Map<String, String>? _characterMap;
 
   @override

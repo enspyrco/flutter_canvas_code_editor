@@ -1,6 +1,6 @@
 import 'package:abstractions/beliefs.dart';
 
-import '../../workspace/beliefs/file_system_entity_name.dart';
+import '../../workspace/beliefs/file_system_entity_beliefs.dart';
 
 class EditorBeliefs implements CoreBeliefs {
   EditorBeliefs({
@@ -8,7 +8,7 @@ class EditorBeliefs implements CoreBeliefs {
     required this.characterMap,
   });
 
-  final FileSystemEntityName? currentFileName;
+  final FileSystemEntityBeliefs? currentFileName;
   final Map<String, String>? characterMap;
 
   static EditorBeliefs get initial => EditorBeliefs(
@@ -18,7 +18,7 @@ class EditorBeliefs implements CoreBeliefs {
 
   @override
   EditorBeliefs copyWith({
-    FileSystemEntityName? currentFileName,
+    FileSystemEntityBeliefs? currentFileName,
     Map<String, String>? characterMap,
   }) =>
       EditorBeliefs(

@@ -1,8 +1,23 @@
 import 'package:abstractions/beliefs.dart';
 
-class FileSystemEntityName implements Belief {
-  FileSystemEntityName({required this.basename, required this.dirname})
-      : fullName = '$dirname/$basename';
+enum EntityType {
+  generalFile,
+  dartFile,
+  yamlFile,
+  lockFile,
+  hiddenFile,
+  directory,
+  link,
+  unknown,
+}
+
+class FileSystemEntityBeliefs implements Belief {
+  FileSystemEntityBeliefs({
+    required this.basename,
+    required this.dirname,
+    required this.type,
+    required this.extension,
+  }) : fullName = '$dirname/$basename';
 
   /// The part of this entity's path after the last separator.
   ///
@@ -26,6 +41,10 @@ class FileSystemEntityName implements Belief {
   final String dirname;
 
   final String fullName;
+
+  final EntityType type;
+
+  final String extension;
 
   @override
   Belief copyWith() {

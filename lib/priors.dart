@@ -13,7 +13,7 @@ import 'sections/i_d_e/beliefs/i_d_e_beliefs.dart';
 import 'sections/i_d_e/beliefs/i_d_e_layer.dart';
 import 'systems/analysis_system.dart';
 import 'systems/file_picker_system.dart';
-import 'systems/file_system_system.dart';
+import 'systems/file_system_subsystem.dart';
 import 'systems/identity_system.dart';
 
 Future<void> setupPriors({required Widget initialScreen}) async {
@@ -25,7 +25,7 @@ Future<void> setupPriors({required Widget initialScreen}) async {
 
   // Add services
   Locator.add<FilePickerSystem>(const FilePickerSystem());
-  Locator.add<FileSystemSystem>(const FileSystemSystem());
+  Locator.add<FileSystemSubsystem>(const FileSystemSubsystem());
   Locator.add<IdentitySystem>(const IdentitySystem());
   Locator.add<AnalysisSystem>(AnalysisSystem());
 

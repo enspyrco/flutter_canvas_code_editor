@@ -1,12 +1,10 @@
 import 'package:abstractions/beliefs.dart';
-import 'package:file/file.dart';
 import 'package:locator_for_perception/locator_for_perception.dart';
-import 'package:path/path.dart';
 
+import '../../../../systems/file_system_subsystem.dart';
 import '../../../analysis/cognition/considerations/starting_analysis_server.dart';
 import '../../../i_d_e/beliefs/i_d_e_beliefs.dart';
-import '../../../../systems/file_system_system.dart';
-import '../../beliefs/file_system_entity_name.dart';
+import '../../beliefs/file_system_entity_beliefs.dart';
 import '../../beliefs/opening_directory_state.dart';
 import '../conclusions/workspace_updates.dart';
 
@@ -20,9 +18,9 @@ class OpeningDirectory extends Consideration<IDEBeliefs> {
     beliefSystem.conclude(
         WorkspaceUpdates(openingDirectoryState: OpeningDirectoryState.opening));
 
-    var fileSystemSystem = locate<FileSystemSystem>();
+    var fileSystemSystem = locate<FileSystemSubsystem>();
 
-    List<FileSystemEntity> entities =
+    List<FileSystemEntityBeliefs> beliefs =
         await fileSystemSystem.openDirectory(_path);
 
     beliefSystem.consider(StartingAnalysisServer(
@@ -32,14 +30,7 @@ class OpeningDirectory extends Consideration<IDEBeliefs> {
       WorkspaceUpdates(
         openingDirectoryState: OpeningDirectoryState.opening,
         directoryPath: _path,
-        entityNames: entities.map<FileSystemEntityName>(
-          (FileSystemEntity e) {
-            return FileSystemEntityName(
-              basename: basename(e.path),
-              dirname: dirname(e.path),
-            );
-          },
-        ).toList(),
+        fileSystemEntities: beliefs,
       ),
     );
   }
