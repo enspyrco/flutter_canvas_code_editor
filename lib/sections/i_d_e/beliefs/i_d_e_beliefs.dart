@@ -56,7 +56,7 @@ class IDEBeliefs
         'analysis': analysis.toJson(),
         'workspace': workspace.toJson(),
         'editor': editor.toJson(),
-        'navigation': framing.toJson(),
+        'framing': framing.toJson(),
         'error': error.toJson(),
       };
 }

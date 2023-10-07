@@ -41,7 +41,7 @@ class StartingAnalysisServer extends Consideration<IDEBeliefs> {
     beliefSystem.conclude(
       AnalysisUpdated(
         newSentMessage: {
-          'method': 'initialized',
+          'method': 'initialize',
           'params': initializeParams.toJson(),
         },
       ),
