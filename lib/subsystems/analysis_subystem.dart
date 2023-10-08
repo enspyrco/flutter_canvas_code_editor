@@ -1,4 +1,4 @@
-import 'package:abstractions/subsystems.dart';
+import 'package:abstractions/subsystem.dart';
 import 'package:analysis_server_utils/analysis_server_utils.dart';
 import 'package:lsp_client/lsp_client.dart';
 

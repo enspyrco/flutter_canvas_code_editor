@@ -1,4 +1,4 @@
-import 'package:abstractions/subsystems.dart';
+import 'package:abstractions/subsystem.dart';
 
 class IdentitySubystem implements Subsystem {
   const IdentitySubystem();

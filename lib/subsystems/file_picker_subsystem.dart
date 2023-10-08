@@ -1,4 +1,4 @@
-import 'package:abstractions/subsystems.dart';
+import 'package:abstractions/subsystem.dart';
 import 'package:file_picker/file_picker.dart';
 
 class FilePickerSubsystem implements Subsystem {
