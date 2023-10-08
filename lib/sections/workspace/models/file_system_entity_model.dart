@@ -11,7 +11,10 @@ class FileSystemEntityModel {
             const Icon(
               Icons.question_mark,
               size: 20,
-            );
+            ),
+        children = beliefs.children
+            .map<FileSystemEntityModel>((e) => FileSystemEntityModel(e))
+            .toList();
 
   static const Map<EntityType, Icon> _iconForEntityType = {
     EntityType.dartFile: Icon(
@@ -34,4 +37,5 @@ class FileSystemEntityModel {
 
   final Icon icon;
   final FileSystemEntityBeliefs beliefs;
+  final List<FileSystemEntityModel> children;
 }

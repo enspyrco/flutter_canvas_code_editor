@@ -18,13 +18,13 @@ class OpeningDirectory extends Consideration<IDEBeliefs> {
     beliefSystem.conclude(
         WorkspaceUpdates(openingDirectoryState: OpeningDirectoryState.opening));
 
-    var fileSystemSystem = locate<FileSystemSubsystem>();
+    var fileSystemSubsystem = locate<FileSystemSubsystem>();
 
     List<FileSystemEntityBeliefs> beliefs =
-        await fileSystemSystem.openDirectory(_path);
+        await fileSystemSubsystem.openDirectory(_path);
 
     beliefSystem.consider(StartingAnalysisServer(
-        directory: fileSystemSystem.directoryFromPath(_path)));
+        directory: fileSystemSubsystem.directoryFromPath(_path)));
 
     beliefSystem.conclude(
       WorkspaceUpdates(

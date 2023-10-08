@@ -17,6 +17,7 @@ class FileSystemEntityBeliefs implements Belief {
     required this.dirname,
     required this.type,
     required this.extension,
+    required this.children,
   }) : fullName = '$dirname/$basename';
 
   /// The part of this entity's path after the last separator.
@@ -45,6 +46,8 @@ class FileSystemEntityBeliefs implements Belief {
   final EntityType type;
 
   final String extension;
+
+  final List<FileSystemEntityBeliefs> children;
 
   @override
   Belief copyWith() {

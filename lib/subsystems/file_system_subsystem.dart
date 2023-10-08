@@ -30,12 +30,16 @@ class FileSystemSubsystem implements Subsystem {
         _ => EntityType.unknown,
       };
 
+      List<FileSystemEntityBeliefs> children =
+          (entity is Directory) ? await openDirectory(entity.path) : [];
+
       beliefs.add(
         FileSystemEntityBeliefs(
           basename: baseName,
           dirname: dirName,
           type: type,
           extension: fileExtension,
+          children: children,
         ),
       );
     }

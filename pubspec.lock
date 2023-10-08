@@ -109,7 +109,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_fancy_tree_view:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_fancy_tree_view
       sha256: f3883801aa2beedce285ffb7eac9b9d59fb7dcdd3fd71703dea60f3e4e1f29f2
